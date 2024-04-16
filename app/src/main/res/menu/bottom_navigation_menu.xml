@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_home"
-        android:title="Home"
-        app:showAsAction="always"
-        app:icon="@drawable/ic_home" />
+        android:id="@+id/home_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
 
     <item
-        android:id="@+id/item_2"
+        android:id="@+id/profile_item"
         android:enabled="true"
-        android:icon="@drawable/landing_icon"
-        android:title="@string/password"/>
+        android:icon="@drawable/ic_manager"
+        android:title="@string/profile"/>
 </menu>

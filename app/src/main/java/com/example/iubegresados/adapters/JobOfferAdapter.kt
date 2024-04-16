@@ -16,36 +16,36 @@ class JobOfferAdapter(private var jobOfferList: List<JobOffer>, private val jobV
 
     class JobOfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(jobOffer: JobOffer, jobOfferViewModel: JobOfferViewModel) {
-            itemView.findViewById<TextView>(R.id.titleNoteText).text = jobOffer.title
-            val contentTextView = itemView.findViewById<TextView>(R.id.contentNoteText)
-            contentTextView.text = jobOffer.content
+//            itemView.findViewById<TextView>(R.id.titleNoteText).text = jobOffer.title
+//            val contentTextView = itemView.findViewById<TextView>(R.id.contentNoteText)
+//            contentTextView.text = jobOffer.content
+//
+//            // Botón para editar la nota
+//            itemView.findViewById<Button>(R.id.noteEdit).setOnClickListener { v ->
+//                val intent = Intent(v.context, UpdateNoteActivity::class.java)
+//                intent.putExtra("note_id", jobOffer.id)
+//                v.context.startActivity(intent)
+//            }
+//
+//            // Botón para eliminar la nota
+//            itemView.findViewById<Button>(R.id.eliminar).setOnClickListener { v ->
+//                jobOfferViewModel.deleteNote(jobOffer)
+//            }
 
-            // Botón para editar la nota
-            itemView.findViewById<Button>(R.id.noteEdit).setOnClickListener { v ->
-                val intent = Intent(v.context, UpdateNoteActivity::class.java)
-                intent.putExtra("note_id", jobOffer.id)
-                v.context.startActivity(intent)
-            }
-
-            // Botón para eliminar la nota
-            itemView.findViewById<Button>(R.id.eliminar).setOnClickListener { v ->
-                jobOfferViewModel.deleteNote(jobOffer)
-            }
-
-            // Botón para aumentar el tamaño de la fuente del contenido de la nota
-            itemView.findViewById<Button>(R.id.aumentar).setOnClickListener {
-                contentTextView.textSize += 1
-            }
-
-            // Botón para reducir el tamaño de la fuente del contenido de la nota
-            itemView.findViewById<Button>(R.id.reducir).setOnClickListener {
-                contentTextView.textSize -= 1
-            }
+//            // Botón para aumentar el tamaño de la fuente del contenido de la nota
+//            itemView.findViewById<Button>(R.id.aumentar).setOnClickListener {
+//                contentTextView.textSize += 1
+//            }
+//
+//            // Botón para reducir el tamaño de la fuente del contenido de la nota
+//            itemView.findViewById<Button>(R.id.reducir).setOnClickListener {
+//                contentTextView.textSize -= 1
+//            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobOfferViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.note, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.job_offer, parent, false)
         return JobOfferViewHolder(view)
     }
 

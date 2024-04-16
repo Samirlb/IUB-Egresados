@@ -7,4 +7,8 @@
     <string name="forgot_description">¡No te preocupes! Por favor ingrese la dirección de correo electrónico vinculada con su cuenta.</string>
     <string name="send_code">Enviar Codigo</string>
     <string name="log_in">Iniciar Session</string>
+    <string name="home">Inicio</string>
+    <string name="profile">Perfil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
