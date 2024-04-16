@@ -1,6 +1,8 @@
 package com.example.iubegresados.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,9 +11,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.iubegresados.R
-import com.example.iubegresados.data.repository.LoginRepository
+import com.example.iubegresados.data.model.SessionManager
+import com.example.iubegresados.data.model.User
+import com.example.iubegresados.data.model.UserSingleton
+import com.example.iubegresados.data.repository.UserRepository
 import com.example.iubegresados.ui.viewModels.LoginViewModel
+import com.example.iubegresados.ui.viewModels.UserViewModel
 import com.google.gson.Gson
+import io.jsonwebtoken.Claims
+import io.jsonwebtoken.Jwts
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -21,14 +29,23 @@ class Login : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var forgotPassword: Button
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var sessionManager: SessionManager
+    private lateinit var userRepository: UserRepository
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userRepository = UserRepository(application)
 
         loginButton = findViewById(R.id.logInButton)
         forgotPassword = findViewById(R.id.forgotPasswordButton)
+
+        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sessionManager = SessionManager(this)
 
         loginButton.setOnClickListener {
             val email = findViewById<EditText>(R.id.loginEmailText).text.toString()
@@ -43,19 +60,47 @@ class Login : AppCompatActivity() {
     private fun login(email: String, password: String) {
         loginViewModel.getLogin(email, password)
 
-        loginViewModel.loginInfo.observe(this){ loginInfo->
+        loginViewModel.loginInfo.observe(this) { loginInfo ->
             if (loginInfo.access_token.isNotEmpty()) {
-                saveUser(email, password)
-                goToHome()
+                sessionManager.saveAuthToken(loginInfo.access_token)
+                getUserDetails(loginInfo.access_token)
             } else {
                 Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun getUserDetails(token: String) {
+        val userId = decodeTokenAndGetUserId(token)
+        userViewModel.getUserBy(userId)
 
-    private fun saveUser(email: String, password: String) {
-        // Implement your logic to save user data
+        userViewModel.userInfo.observe(this) { user ->
+            UserSingleton.user = user
+            saveUser(user)
+            goToHome()
+        }
+    }
+
+    private fun saveUser(user: User) {
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val userJson = gson.toJson(user)
+        editor.putString("user", userJson)
+        editor.apply()
+    }
+
+    private fun decodeTokenAndGetUserId(token: String): String {
+        // Parse the token
+        val claims: Claims = Jwts.parserBuilder()
+            .setSigningKey("a629d8276b72b7c8cad02eee54b1dd2da059a37f782ff7fe517435ae6ef763f1".toByteArray())
+            .build()
+            .parseClaimsJws(token)
+            .body
+
+        // Extract the user ID from the claims
+        val userId: String = claims["id"].toString()
+
+        return userId
     }
 
     private fun goToHome() {
@@ -63,6 +108,7 @@ class Login : AppCompatActivity() {
         finish()
     }
 }
+
 
 data class LoginRequest(val username: String, val password: String)
 data class LoginResponse(val success: Boolean)

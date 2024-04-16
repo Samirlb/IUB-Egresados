@@ -29,12 +29,12 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
                     if (response.isSuccessful) {
                         _loginInfo.value = response.body()
                     } else {
-                        Log.d("LoginViewModel", "Error: ${response.errorBody()}")
+                        Log.d("LoginViewModel", "Error body: ${response.errorBody().toString()}")
                     }
                 }
 
                 override fun onFailure(call: Call<Login>, t: Throwable) {
-                    Log.d("LoginViewModel", "Error: ${t.toString()}")
+                    Log.d("LoginViewModel", "Fail: ${t.message.toString()}")
                 }
 
             })

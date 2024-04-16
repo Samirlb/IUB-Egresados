@@ -7,7 +7,7 @@ import com.example.parcial_2_jg.data.remote.ApiClient
 import retrofit2.Call
 
 class LoginRepository(application: Application) : AndroidViewModel(application) {
-    private val apiClient = ApiClient().getApiService()
+    private val apiClient = ApiClient().getApiService(application.applicationContext)
 
     fun getLoginInfo(email: String, password: String): Call<Login> {
         return apiClient.login(email, password)
