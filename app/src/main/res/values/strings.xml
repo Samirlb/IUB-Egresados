@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">IUB Egresados</string>
     <string name="welcome_text">Bienvenido de nuevo!</string>
+    <string name="my_profile">Mi Perfil</string>
+    <string name="my_info">Informacion Personal</string>
+    <string name="fullname">Nombre Completo</string>
     <string name="email">Correo Electronico</string>
+    <string name="phone">Numero Celular</string>
+    <string name="address">Direccion</string>
+    <string name="carreers">Carreras</string>
+    <string name="roles">Roles</string>
+    <string name="date">Fecha de Creacion</string>
     <string name="password">Contraseña</string>
     <string name="forgot_password">Olvidate mi contraseña</string>
     <string name="forgot_description">¡No te preocupes! Por favor ingrese la dirección de correo electrónico vinculada con su cuenta.</string>
