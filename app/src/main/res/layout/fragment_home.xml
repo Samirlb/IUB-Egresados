@@ -30,11 +30,11 @@
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jobOfferRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            app:layoutManager="LinearLayoutManager"
-            />
+            app:layoutManager="LinearLayoutManager" />
     </LinearLayout>
 
 </FrameLayout>

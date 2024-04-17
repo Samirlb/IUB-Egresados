@@ -17,20 +17,33 @@ class JobOfferViewModel(application: Application): AndroidViewModel(application)
         get() = _jobOffers
 
     fun getJobOffers() {
-        job.getJobOffers().enqueue(object : Callback<List<JobOffer>> {
+        job.getJobOffers().enqueue(object : Callback<Map<String, List<JobOffer>>> {
             override fun onResponse(
-                call: Call<List<JobOffer>>,
-                response: Response<List<JobOffer>>
+                call: Call<Map<String, List<JobOffer>>>,
+                response: Response<Map<String, List<JobOffer>>>
             ) {
                 if (response.isSuccessful) {
-                    _jobOffers.value = response.body()
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        // Extract the "resultado" array from the response
+                        val resultadoArray = responseBody["resultado"]
+                        if (resultadoArray != null) {
+                            _jobOffers.value = resultadoArray
+                        } else {
+                            Log.d("JobOfferViewModel", "Failed to parse 'resultado' array")
+                        }
+                    } else {
+                        Log.d("JobOfferViewModel", "Response body is null")
+                    }
                 } else {
                     Log.d("JobOfferViewModel", "Error: ${response.errorBody()}")
                 }
             }
 
-            override fun onFailure(call: Call<List<JobOffer>>, t: Throwable) {
-                Log.d("JobOfferViewModel", "Error: ${t.toString()}")
+
+
+            override fun onFailure(call: Call<Map<String, List<JobOffer>>>, t: Throwable) {
+                Log.d("JobOfferViewModel", "Fail: ${t.message.toString()}")
             }
 
         })
