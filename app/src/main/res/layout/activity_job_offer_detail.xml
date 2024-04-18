@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/jobOfferMailText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.JobOfferDetail">
@@ -47,7 +46,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/jobOfferDetailTitleText"
+                android:id="@+id/jobOfferTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -162,7 +161,7 @@
                             android:text="Correo" />
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/jobOfferMailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -224,6 +223,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/layout_bg"
+                android:backgroundTint="@color/background_item_color"
                 android:orientation="vertical">
 
                 <TextView
@@ -231,6 +234,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
+                    android:layout_marginTop="12dp"
                     android:text="Descripcion de oferta"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -242,6 +246,7 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginRight="24dp"
+                    android:layout_marginBottom="12dp"
                     android:text="TextView" />
             </LinearLayout>
 

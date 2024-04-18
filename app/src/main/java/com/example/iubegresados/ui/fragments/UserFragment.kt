@@ -6,44 +6,57 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iubegresados.R
 import com.example.iubegresados.data.model.SessionManager
 import com.example.iubegresados.ui.viewModels.UserViewModel
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class UserFragment : Fragment() {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var sessionManager: SessionManager
+    private lateinit var tvMail: TextView
+    private lateinit var tvName: TextView
+    private lateinit var tvPhone: TextView
+    private lateinit var tvAddress: TextView
+    private lateinit var tvRoles: TextView
+    private lateinit var tvStartDay: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sessionManager = SessionManager(requireContext())
+        sessionManager = SessionManager(view.context)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        tvMail = view.findViewById(R.id.tvemail)
+        tvName = view.findViewById(R.id.tvName)
+        tvPhone = view.findViewById(R.id.tvphone)
+        tvAddress = view.findViewById(R.id.tvAddress)
+        tvRoles = view.findViewById(R.id.tvRoles)
+        tvStartDay = view.findViewById(R.id.tvCreationDate)
 
+        val user = sessionManager.fetchUser()
 
-        val userid = sessionManager.fetchUser()?.userid
+        tvMail.text = user?.email
+        tvName.text = "${user?.firstname} ${user?.lastname}"
+        tvPhone.text = user?.cellphone
+        tvAddress.text = user?.address
+        tvRoles.text = user?.roles?.joinToString(" - ") { it.name }
+        tvStartDay.text = formatDate(user?.creationdate)
+    }
 
-
-
-        // Verifica que el userid no sea nulo antes de llamar a getUserBy()
-        if (!userid.isNullOrEmpty()) {
-            userViewModel.getUserBy(userid)
-            userViewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
-                Log.d("UserFragment", "Usuario: $userInfo")
-            }
-        } else {
-            Log.e("UserFragment", "User id: $userid")
-            Log.e("UserFragment", "No se pudo obtener el userid")
+    private fun formatDate(dateString: String?): String {
+        dateString?.let {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = dateFormat.parse(it)
+            val formattedDate = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(date)
+            return formattedDate
         }
-
-        userViewModel.getUserBy("")
-        userViewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
-            Log.d("HomeFragment", "Usuario: $userInfo")
-        }
+        return ""
     }
 
     override fun onCreateView(

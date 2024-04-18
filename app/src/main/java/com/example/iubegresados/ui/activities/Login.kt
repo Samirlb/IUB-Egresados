@@ -66,6 +66,7 @@ class Login : AppCompatActivity() {
         userViewModel.getUserBy(userId)
 
         userViewModel.userInfo.observe(this) { user ->
+            user.userid = userId.toString()
             AppSingleton.user = user
             saveUser(user)
             goToHome()

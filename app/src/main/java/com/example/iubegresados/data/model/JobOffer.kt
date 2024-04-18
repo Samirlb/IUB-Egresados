@@ -8,6 +8,9 @@ data class JobOffer(
     var workday: String,
     var status: Boolean,
     var salary: String,
+    var description: String,
+    var skills: String,
+    var website: String,
     var creationdate: String,
     var companyid: String,
     var company: Company? = null

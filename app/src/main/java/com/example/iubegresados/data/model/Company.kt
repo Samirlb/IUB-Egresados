@@ -8,7 +8,8 @@ data class Company(
     val address: String,
     val status: Boolean,
     val cellphone: Long,
+    val website: String,
     val companyId: String,
-    val nit: Int,
+    val nit: Long,
     val creationDate: String
 ) : Serializable {}
