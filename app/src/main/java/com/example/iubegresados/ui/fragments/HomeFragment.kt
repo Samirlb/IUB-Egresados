@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iubegresados.R
 import com.example.iubegresados.adapters.JobOfferAdapter
+import com.example.iubegresados.ui.viewModels.CompanyViewModel
 import com.example.iubegresados.ui.viewModels.JobOfferViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,6 +21,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.jobOfferRecycler)
         jobOfferViewModel = ViewModelProvider(this).get(JobOfferViewModel::class.java)
+
         jobOfferViewModel.getJobOffers()
 
         jobOfferViewModel.jobOffers.observe(viewLifecycleOwner) { jobOffers ->
