@@ -21,5 +21,5 @@ interface ApiService {
     fun getUserBy(@Path("id") id: String): Call<User>
 
     @GET("get_job_offers")
-    fun getJobOffers(): Call<List<JobOffer>>
+    fun getJobOffers(): Call<Map<String, List<JobOffer>>>
 }

@@ -9,7 +9,7 @@ import retrofit2.Call
 class JobOfferRepository(application: Application) : AndroidViewModel(application)  {
     private val apiClient = ApiClient().getApiService(application.applicationContext)
 
-    fun getJobOffers(): Call<List<JobOffer>> {
+    fun getJobOffers(): Call<Map<String, List<JobOffer>>> {
         return apiClient.getJobOffers()
     }
 }

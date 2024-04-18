@@ -16,31 +16,10 @@ class JobOfferAdapter(private var jobOfferList: List<JobOffer>, private val jobV
 
     class JobOfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(jobOffer: JobOffer, jobOfferViewModel: JobOfferViewModel) {
-//            itemView.findViewById<TextView>(R.id.titleNoteText).text = jobOffer.title
-//            val contentTextView = itemView.findViewById<TextView>(R.id.contentNoteText)
-//            contentTextView.text = jobOffer.content
-//
-//            // Botón para editar la nota
-//            itemView.findViewById<Button>(R.id.noteEdit).setOnClickListener { v ->
-//                val intent = Intent(v.context, UpdateNoteActivity::class.java)
-//                intent.putExtra("note_id", jobOffer.id)
-//                v.context.startActivity(intent)
-//            }
-//
-//            // Botón para eliminar la nota
-//            itemView.findViewById<Button>(R.id.eliminar).setOnClickListener { v ->
-//                jobOfferViewModel.deleteNote(jobOffer)
-//            }
-
-//            // Botón para aumentar el tamaño de la fuente del contenido de la nota
-//            itemView.findViewById<Button>(R.id.aumentar).setOnClickListener {
-//                contentTextView.textSize += 1
-//            }
-//
-//            // Botón para reducir el tamaño de la fuente del contenido de la nota
-//            itemView.findViewById<Button>(R.id.reducir).setOnClickListener {
-//                contentTextView.textSize -= 1
-//            }
+            itemView.findViewById<TextView>(R.id.jobOfferTitleText).text = jobOffer.name
+            itemView.findViewById<TextView>(R.id.jobOfferCompanyText).text = jobOffer.companyid
+            itemView.findViewById<TextView>(R.id.jobOfferDescriptionText).text = jobOffer.workday
+            itemView.findViewById<TextView>(R.id.jobOfferLocation).text = "Baranquilla, Atlántico"
         }
     }
 
