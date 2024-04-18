@@ -20,9 +20,14 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sessionManager = SessionManager(requireContext())
+
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
+
         val userid = sessionManager.fetchUser()?.userid
+
+
 
         // Verifica que el userid no sea nulo antes de llamar a getUserBy()
         if (!userid.isNullOrEmpty()) {
@@ -31,6 +36,7 @@ class UserFragment : Fragment() {
                 Log.d("UserFragment", "Usuario: $userInfo")
             }
         } else {
+            Log.e("UserFragment", "User id: $userid")
             Log.e("UserFragment", "No se pudo obtener el userid")
         }
 
