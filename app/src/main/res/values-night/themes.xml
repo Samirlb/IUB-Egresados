@@ -3,5 +3,9 @@
     <style name="Base.Theme.IUBEgresados" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="cardBackgroundColor">#FF424242</item>
+        <item name="titleTextColor">#FFFFFFFF</item>
+        <item name="backgroundColor">#000000</item>
     </style>
 </resources>

@@ -8,8 +8,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:background="@drawable/layout_bg"
+        android:backgroundTint="@color/background_item_color"
         android:orientation="vertical"
         android:paddingTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,16 +26,18 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:elevation="10dp"
                 app:cardCornerRadius="32dp">
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     app:srcCompat="@drawable/job_offer_icon" />
 
             </androidx.cardview.widget.CardView>
@@ -52,6 +57,7 @@
                     android:layout_marginRight="12dp"
                     android:layout_weight="1"
                     android:text="Text"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <TextView
@@ -59,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
+                    android:textColor="@color/white"
                     android:layout_weight="1"
                     android:text="TextView" />
             </LinearLayout>
@@ -70,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:background="@drawable/layouth_item_bg"
+            android:backgroundTint="@color/detail_color"
             android:orientation="vertical">
 
             <LinearLayout
@@ -84,7 +92,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_location" />
+                    app:srcCompat="@drawable/ic_location"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/jobOfferLocation"
@@ -92,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="TextView" />
             </LinearLayout>
 
@@ -107,13 +117,15 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_work" />
+                    app:srcCompat="@drawable/ic_work"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/jobOfferDescriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
+                    android:textColor="@color/white"
                     android:layout_weight="1"
                     android:text="TextView" />
             </LinearLayout>

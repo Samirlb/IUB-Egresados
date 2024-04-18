@@ -2,6 +2,7 @@ package com.example.parcial_2_jg.data.remote
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.iubegresados.data.model.Company
 import com.example.iubegresados.data.model.JobOffer
 import com.example.iubegresados.data.model.Login
 import com.example.iubegresados.data.model.User
@@ -9,7 +10,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    var sharedPreferences: SharedPreferences
     @POST("login")
     @FormUrlEncoded
     fun login(
@@ -22,4 +22,7 @@ interface ApiService {
 
     @GET("get_job_offers")
     fun getJobOffers(): Call<Map<String, List<JobOffer>>>
+
+    @GET("get_company/{id}")
+    fun getCompanyBy(id: String): Call<Company>
 }

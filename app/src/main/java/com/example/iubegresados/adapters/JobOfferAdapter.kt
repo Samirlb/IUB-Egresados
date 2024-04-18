@@ -17,9 +17,9 @@ class JobOfferAdapter(private var jobOfferList: List<JobOffer>, private val jobV
     class JobOfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(jobOffer: JobOffer, jobOfferViewModel: JobOfferViewModel) {
             itemView.findViewById<TextView>(R.id.jobOfferTitleText).text = jobOffer.name
-            itemView.findViewById<TextView>(R.id.jobOfferCompanyText).text = jobOffer.companyid
+            itemView.findViewById<TextView>(R.id.jobOfferCompanyText).text = jobOffer.companyname
             itemView.findViewById<TextView>(R.id.jobOfferDescriptionText).text = jobOffer.workday
-            itemView.findViewById<TextView>(R.id.jobOfferLocation).text = "Baranquilla, Atlántico"
+            itemView.findViewById<TextView>(R.id.jobOfferLocation).text = jobOffer.companyaddress
         }
     }
 

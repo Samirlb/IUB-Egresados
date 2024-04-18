@@ -32,7 +32,6 @@ class Login : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var sessionManager: SessionManager
     private lateinit var userRepository: UserRepository
-    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +42,6 @@ class Login : AppCompatActivity() {
 
         loginButton = findViewById(R.id.logInButton)
         forgotPassword = findViewById(R.id.forgotPasswordButton)
-
-        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         sessionManager = SessionManager(this)
 
         loginButton.setOnClickListener {
@@ -82,11 +79,9 @@ class Login : AppCompatActivity() {
     }
 
     private fun saveUser(user: User) {
-        val editor = sharedPreferences.edit()
         val gson = Gson()
         val userJson = gson.toJson(user)
-        editor.putString("user", userJson)
-        editor.apply()
+        sessionManager.saveUser(userJson)
     }
 
     private fun decodeTokenAndGetUserId(token: String): String {
