@@ -1,8 +1,6 @@
 package com.example.iubegresados.ui.activities
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -13,17 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.iubegresados.R
 import com.example.iubegresados.data.model.SessionManager
 import com.example.iubegresados.data.model.User
-import com.example.iubegresados.data.model.UserSingleton
+import com.example.iubegresados.data.model.AppSingleton
 import com.example.iubegresados.data.repository.UserRepository
 import com.example.iubegresados.ui.viewModels.LoginViewModel
 import com.example.iubegresados.ui.viewModels.UserViewModel
 import com.google.gson.Gson
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
-import java.io.IOException
 
 class Login : AppCompatActivity() {
     private lateinit var loginButton: Button
@@ -72,7 +66,7 @@ class Login : AppCompatActivity() {
         userViewModel.getUserBy(userId)
 
         userViewModel.userInfo.observe(this) { user ->
-            UserSingleton.user = user
+            AppSingleton.user = user
             saveUser(user)
             goToHome()
         }

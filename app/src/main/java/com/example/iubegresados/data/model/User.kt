@@ -14,7 +14,8 @@ data class User(
     var creationdate: String = ""
 ) : Serializable {}
 
-object UserSingleton {
+object AppSingleton {
     var user: User? = null
     var currentUser: User? = null
+    var selectedJobOffer: JobOffer? = null
 }

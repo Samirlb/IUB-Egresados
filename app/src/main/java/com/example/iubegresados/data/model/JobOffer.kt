@@ -7,17 +7,9 @@ data class JobOffer(
     var name: String,
     var workday: String,
     var status: Boolean,
+    var salary: String,
     var creationdate: String,
     var companyid: String,
-    var companyname: String = "",
-    var companyaddress: String = ""
+    var company: Company? = null
 ) : Serializable {
-    constructor(jobOfferModel: JobOfferModel) : this(
-        jobOfferModel.offerid,
-        jobOfferModel.name,
-        jobOfferModel.workday,
-        jobOfferModel.status,
-        jobOfferModel.creationdate,
-        jobOfferModel.companyid
-    )
 }
