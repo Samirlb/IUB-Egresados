@@ -2,10 +2,12 @@ package com.example.parcial_2_jg.data.remote
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.iubegresados.data.model.ApplicantResponse
 import com.example.iubegresados.data.model.Company
 import com.example.iubegresados.data.model.JobOffer
 import com.example.iubegresados.data.model.Login
 import com.example.iubegresados.data.model.User
+import com.example.iubegresados.data.repository.ApplicantRequest
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,4 +27,8 @@ interface ApiService {
 
     @GET("get_company/{id}")
     fun getCompanyBy(id: String): Call<Company>
+
+    @POST("create_applicant")
+    fun createApplicant(@Body request: ApplicantRequest): Call<ApplicantResponse>
+
 }

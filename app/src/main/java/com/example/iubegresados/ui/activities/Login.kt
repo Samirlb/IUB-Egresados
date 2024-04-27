@@ -38,6 +38,11 @@ class Login : AppCompatActivity() {
         forgotPassword = findViewById(R.id.forgotPasswordButton)
         sessionManager = SessionManager(this)
 
+        if (sessionManager.fetchUser() != null) {
+            goToHome()
+            return
+        }
+
         loginButton.setOnClickListener {
             val email = findViewById<EditText>(R.id.loginEmailText).text.toString()
             val password = findViewById<EditText>(R.id.loginPasswordText).text.toString()

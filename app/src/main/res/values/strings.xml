@@ -19,4 +19,7 @@
     <string name="profile">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logOut">Cerrar sesion</string>
+    <string name="applicants">Aplicantes</string>
+    <string name="apply">Aplicar</string>
 </resources>

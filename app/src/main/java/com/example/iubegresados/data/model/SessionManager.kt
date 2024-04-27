@@ -35,4 +35,11 @@ class SessionManager (context: Context) {
         }
         return null
     }
+
+    fun logout() {
+        val editor = prefs.edit()
+        editor.remove(USER)
+        editor.remove(USER_TOKEN)
+        editor.apply()
+    }
 }

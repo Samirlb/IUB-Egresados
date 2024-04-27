@@ -1,14 +1,13 @@
 package com.example.iubegresados.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.example.iubegresados.R
 import com.example.iubegresados.data.model.SessionManager
 import com.example.iubegresados.ui.viewModels.UserViewModel
@@ -26,6 +25,7 @@ class UserFragment : Fragment() {
     private lateinit var tvAddress: TextView
     private lateinit var tvRoles: TextView
     private lateinit var tvStartDay: TextView
+    private lateinit var logOutButton: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,6 +38,7 @@ class UserFragment : Fragment() {
         tvAddress = view.findViewById(R.id.tvAddress)
         tvRoles = view.findViewById(R.id.tvRoles)
         tvStartDay = view.findViewById(R.id.tvCreationDate)
+        logOutButton = view.findViewById(R.id.logOutButton)
 
         val user = sessionManager.fetchUser()
 
@@ -47,6 +48,11 @@ class UserFragment : Fragment() {
         tvAddress.text = user?.address
         tvRoles.text = user?.roles?.joinToString(" - ") { it.name }
         tvStartDay.text = formatDate(user?.creationdate)
+
+        logOutButton.setOnClickListener {
+            sessionManager.logout()
+            activity?.finish()
+        }
     }
 
     private fun formatDate(dateString: String?): String {

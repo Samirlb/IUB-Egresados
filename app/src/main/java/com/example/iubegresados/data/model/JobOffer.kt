@@ -13,6 +13,7 @@ data class JobOffer(
     var website: String,
     var creationdate: String,
     var companyid: String,
-    var company: Company? = null
+    var company: Company? = null,
+    var applicants: List<Applicant> = listOf()
 ) : Serializable {
 }

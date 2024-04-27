@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iubegresados.R
+import com.example.iubegresados.adapters.ApplicantsAdapter
 import com.example.iubegresados.adapters.JobOfferAdapter
+import com.example.iubegresados.data.model.AppSingleton
 import com.example.iubegresados.ui.viewModels.CompanyViewModel
 import com.example.iubegresados.ui.viewModels.JobOfferViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,6 +31,11 @@ class HomeFragment : Fragment() {
             val adapter = JobOfferAdapter(jobOffers, jobOfferViewModel)
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        jobOfferViewModel.getJobOffers()
     }
 
     override fun onCreateView(
